@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         List<ManUnited> squad = GitHubNew2.Program.GenerateList();
-        List<ManUnited> squadStar = GitHubNew2.Program.GenerateList().Where(x => x.Attribute > 85).ToList();
+        List<ManUnited> squadStar = GitHubNew2.Program.GenerateList().Where(x => x.Attribute > 75).ToList();
 
         public Form1()
         {
@@ -30,8 +30,9 @@ namespace WindowsFormsApp1
             comboBox1.DataSource = squad;
             comboBox1.DisplayMember = "Name";
 
-            listBox1.DataSource = squad.Where(x => x.Attribute > 85).ToList();
+            listBox1.DataSource = squadStar;
             listBox1.DisplayMember = "Name";
+
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -65,20 +66,56 @@ namespace WindowsFormsApp1
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //List<ManUnited> upSquad = new List<ManUnited>();
-
             int newIndex = listBox1.SelectedIndex - 1;
                        
+            upSquad = squadStar;
+            ManUnited sel = (ManUnited)listBox1.SelectedItem;
+
+            string st = sel.Name;
+
+            if (newIndex == -1)
+            {
+                return;
+            }
+            upSquad.Remove(sel);
+            upSquad.Insert(newIndex, sel);
+            
+            listBox1.DataSource = upSquad.ToList();
+            listBox1.SetSelected(newIndex, true);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int newIndex = listBox1.SelectedIndex + 1;
 
             upSquad = squadStar;
             ManUnited sel = (ManUnited)listBox1.SelectedItem;
-            upSquad.Remove((ManUnited)listBox1.SelectedItem);
+
+            string st = sel.Name;
+
+            if (newIndex >= upSquad.Count)
+            {
+                return;
+            }
+            upSquad.Remove(sel);
+            upSquad.Insert(newIndex, sel);
+
             listBox1.DataSource = upSquad.ToList();
+            listBox1.SetSelected(newIndex, true);
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ListViewItem list = new ListViewItem("abc");
+            listView1.Items.Add(list);
         }
     }
 }
