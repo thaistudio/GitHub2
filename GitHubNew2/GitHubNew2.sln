@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubNew2", "GitHubNew2\GitHubNew2.csproj", "{501F606B-4D83-429A-9E02-52861211E10A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{15021C60-BDE3-4F17-9FDE-8910571C9E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List2", "List2\List2.csproj", "{B1A905FA-BDA9-48C4-8BE1-050BE844B801}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{501F606B-4D83-429A-9E02-52861211E10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{501F606B-4D83-429A-9E02-52861211E10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{501F606B-4D83-429A-9E02-52861211E10A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15021C60-BDE3-4F17-9FDE-8910571C9E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15021C60-BDE3-4F17-9FDE-8910571C9E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15021C60-BDE3-4F17-9FDE-8910571C9E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15021C60-BDE3-4F17-9FDE-8910571C9E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A905FA-BDA9-48C4-8BE1-050BE844B801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A905FA-BDA9-48C4-8BE1-050BE844B801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A905FA-BDA9-48C4-8BE1-050BE844B801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A905FA-BDA9-48C4-8BE1-050BE844B801}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
