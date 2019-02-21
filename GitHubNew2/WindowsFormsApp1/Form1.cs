@@ -74,6 +74,7 @@ namespace WindowsFormsApp1
 
             int newIndex = listBox1.SelectedIndex - 1;
                        
+
             upSquad = squadStar;
             ManUnited sel = (ManUnited)listBox1.SelectedItem;
             upSquad.Remove((ManUnited)listBox1.SelectedItem);
