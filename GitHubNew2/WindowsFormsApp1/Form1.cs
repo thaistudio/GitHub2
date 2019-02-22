@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
     {
         List<ManUnited> squad = GitHubNew2.Program.GenerateList();
         List<ManUnited> squadStar = GitHubNew2.Program.GenerateList().Where(x => x.Attribute > 75).ToList();
+        List<ManUnited> squad2 = GitHubNew2.Program.GenerateList();
 
         public Form1()
         {
@@ -33,6 +34,16 @@ namespace WindowsFormsApp1
             listBox1.DataSource = squadStar;
             listBox1.DisplayMember = "Name";
 
+            foreach (ManUnited player in squad)
+            {
+                var row = new string[] { player.Name, player.Number.ToString(), player.Attribute.ToString() };
+                ListViewItem list = new ListViewItem(row);
+                listView1.Items.Add(list);
+            }
+
+            dataGridView1.DataSource = squad;
+            
+
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -44,7 +55,6 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             
             ManUnited added = (ManUnited)comboBox1.SelectedItem;
 
@@ -114,8 +124,42 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ListViewItem list = new ListViewItem("abc");
-            listView1.Items.Add(list);
+            DataGridViewSelectedCellCollection sel = dataGridView1.SelectedCells;
+            int i = sel.Count;
+            for (int n = 0; n < i; n++)
+            {
+                int rowIndex = sel[n].RowIndex;
+                int colIndex = sel[n].ColumnIndex;
+
+                foreach (ManUnited player in squad2)
+                {
+                    if (player.Name == dataGridView1[colIndex, rowIndex].Value.ToString())
+                    {
+                        player.Name = dataGridView1[colIndex, rowIndex].Value.ToString();
+                    }
+
+                    var row = new string[] { player.Name, player.Number.ToString(), player.Attribute.ToString() };
+                    ListViewItem list = new ListViewItem(row);
+                    listView1.Items.Add(list);
+                }
+            }
+
+            
+            //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+
+           
+
+                //        //List<ManUnited> squad3 = squad2.Where(x => x.Name.Equals(dataGridView1[colIndex, rowIndex].Value.ToString())).ToList(); 
+
+                //        //foreach (ManUnited player in squad3)
+                //        //{
+                //        //    player.Name 
+                //        //}
+            }
+
         }
+
+
     }
 }
