@@ -18,6 +18,9 @@ namespace WindowsFormsApp1
         List<ManUnited> squad = GitHubNew2.Program.GenerateList();
         List<ManUnited> squadStar = GitHubNew2.Program.GenerateList().Where(x => x.Attribute > 75).ToList();
         List<ManUnited> squad2 = GitHubNew2.Program.GenerateList();
+        List<ManUnited> squadChanged = GitHubNew2.Program.GenerateList();
+        int row;
+        int col;
 
         public Form1()
         {
@@ -124,42 +127,55 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DataGridViewSelectedCellCollection sel = dataGridView1.SelectedCells;
-            int i = sel.Count;
-            for (int n = 0; n < i; n++)
+            listView1.Items.Clear();
+            foreach (ManUnited player in squadChanged)
             {
-                int rowIndex = sel[n].RowIndex;
-                int colIndex = sel[n].ColumnIndex;
-
-                foreach (ManUnited player in squad2)
-                {
-                    if (player.Name == dataGridView1[colIndex, rowIndex].Value.ToString())
-                    {
-                        player.Name = dataGridView1[colIndex, rowIndex].Value.ToString();
-                    }
-
                     var row = new string[] { player.Name, player.Number.ToString(), player.Attribute.ToString() };
                     ListViewItem list = new ListViewItem(row);
+                    
                     listView1.Items.Add(list);
-                }
             }
-
             
-            //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            {
-
-           
-
-                //        //List<ManUnited> squad3 = squad2.Where(x => x.Name.Equals(dataGridView1[colIndex, rowIndex].Value.ToString())).ToList(); 
-
-                //        //foreach (ManUnited player in squad3)
-                //        //{
-                //        //    player.Name 
-                //        //}
-            }
-
         }
 
 
+        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            row = e.RowIndex;
+            col = e.ColumnIndex;
+            var val = dataGridView1.SelectedCells[0].Value.ToString();
+            
+            var val2 = dataGridView1[e.ColumnIndex, e.RowIndex].Value;
+            squadChanged.RemoveAt(row);
+            squadChanged.Insert(row, new ManUnited()
+            {
+                Name = dataGridView1[0, e.RowIndex].Value.ToString(),
+                Number = Convert.ToInt32(dataGridView1[1, e.RowIndex].Value),
+                Attribute = Convert.ToInt32(dataGridView1[2, e.RowIndex].Value)
+            });
+
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            List<ManUnited> originSquad = GitHubNew2.Program.GenerateList();
+            listView1.Items.Clear();
+            foreach (ManUnited player in originSquad)
+            {
+                var row = new string[] { player.Name, player.Number.ToString(), player.Attribute.ToString() };
+                ListViewItem list = new ListViewItem(row);
+
+                listView1.Items.Add(list);
+                dataGridView1.DataSource = originSquad;
+            }
+        }
     }
 }

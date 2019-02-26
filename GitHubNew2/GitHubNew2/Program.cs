@@ -52,7 +52,7 @@ namespace GitHubNew2
       
     }
 
-    public class ManUnited
+    public class ManUnited : IManUnitedInt
     {
         public string Name { get; set; }
         public int Number { get; set; }
